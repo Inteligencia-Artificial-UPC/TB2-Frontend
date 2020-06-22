@@ -5,6 +5,8 @@ const reader = new FileReader();
 
 const NO_FILE_SELECTED_EXCEPTION = "ABORT_OPERATION: NO_FILE_SELECTED"
 
+let inProcess = false;
+
 // image stored as base64 string
 let image = undefined;
 
@@ -45,6 +47,10 @@ function fileUpload(){
 }
 
 function Register() {
+    if (inProcess) {
+        return;
+    }
+
     if (image == null) {
         throw NO_FILE_SELECTED_EXCEPTION;
     }
@@ -62,14 +68,23 @@ function Register() {
 
     startSpinner();
     fetch(url, init).catch(err => {
-        stopSpinner();
         console.error(err);
     }).then(res => {
         stopSpinner();
+
+        if (res != null) {
+            alert("Se ha registrado con exito");
+        } else {
+            alert("Ha ocurrido un error");
+        }
     });
 }
 
 function Login() {
+    if (inProcess) {
+        return;
+    }
+
     if (image == null) {
         throw NO_FILE_SELECTED_EXCEPTION;
     }
@@ -82,15 +97,26 @@ function Login() {
 
     startSpinner();
     fetch(url, init).catch(err => {
-        stopSpinner();
         console.error(err);
     }).then(res => {
         stopSpinner();
+
+        if (res != null) {
+            if (res.id == 0) {
+                alert("No se ha podido autenticar");
+            }
+            else {
+                alert("Se ha autenticado con exito");
+            }
+        } else {
+            alert("Ha ocurrido un error");
+        }
+
     });
 }
 
 function requestUtil(endpoint, data) {
-    const port = "8080"
+    const port = "5000"
     const url = `http://localhost:${port}/${endpoint}`;
     const init = {
         method: 'POST',
@@ -103,6 +129,7 @@ function requestUtil(endpoint, data) {
 }
 
 function startSpinner() {
+    inProcess = true;
     const spinner = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                         <p>Espere por favor</p>`;
     const loading = document.getElementsByClassName("loading");
@@ -120,4 +147,5 @@ function stopSpinner() {
             loading.item(i).innerHTML = ""
         }
     }
+    inProcess = false;
 }

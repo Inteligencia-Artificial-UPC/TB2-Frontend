@@ -465,6 +465,13 @@ iframe {
 /*------------------------------------------------------------------
 [ Spinner ]*/
 
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .lds-ring {
     display: inline-block;
     position: relative;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" lang="es">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="assets/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/vendor/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/util.css">
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form">
+                <span class="login100-form-title p-b-26">Iniciar Sesión</span>
+
+                <div>
+                    <span class="circular" onclick="fileUpload()">
+                        <img id="preview" src=""/>
+                        <span id="overlay" class="overlay">
+                            <p><i class="fa fa-file-image-o" aria-hidden="true"></i><br/>Subir imagen</p>
+                        </span>
+                    </span>
+                    <input id="img-file-input" class="visible-false" type="file" name="img-file-input"
+                           accept="image/png, image/jpeg">
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button type="button" class="login100-form-btn" onclick="Login()">Login</button>
+                    </div>
+                    <div class="loading"></div>
+                </div>
+
+
+
+                <div class="text-center p-t-115">
+                    <span class="txt1">¿No tiene cuenta?</span>
+                    <a class="txt2" href="register.html">Registrarse</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="assets/js/input-focus.js"></script>
+<script src="assets/js/image-util.js"></script>
+</body>
+</html>
